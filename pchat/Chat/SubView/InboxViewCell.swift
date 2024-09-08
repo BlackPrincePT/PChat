@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct InboxViewCell: View {
-    let name: String
-    let lastMessage: String
-    let date: Date
-    
-    let avatarURL: URL?
+    @EnvironmentObject private var viewModel: InboxViewModel
+    @ObservedObject private var userService = UserService.shared
+    let chat: Chat
     
     var body: some View {
         HStack {
-            AsyncImage(url: avatarURL) { phase in
+            AsyncImage(url: nil) { phase in // - Attention -
                 if let image = phase.image {
                     image
                         .resizable()
@@ -37,13 +35,31 @@ struct InboxViewCell: View {
             .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text(name).font(.headline).lineLimit(1)
-                Text(lastMessage).font(.subheadline).foregroundColor(.gray).lineLimit(1)
+                Text(getChatTitle())
+                    .font(.headline)
+                    .lineLimit(1)
+                
+                Text(chat.lastMessage)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .lineLimit(1)
             }
             Spacer()
-            Text(date, style: .time).font(.caption).foregroundColor(.gray)
+            Text(chat.lastMessageTimestamp, style: .time)
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
         .padding(.vertical, 8)
     }
+    
+    func getChatTitle() -> String {
+        if chat.isGroup {
+            return chat.title ?? "Group Chat"
+        } else if let otherParticipantId = chat.participants.first(where: { $0 != userService.userAuth?.uid }) {
+            return viewModel.getCachedUsername(for: otherParticipantId) ?? "Unknown User"
+        }
+        return "Unknown Chat"
+    }
+
 }
 

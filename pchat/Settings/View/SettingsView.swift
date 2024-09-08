@@ -20,7 +20,7 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(destination: EditProfileView()) {
                         HStack {
-                            AsyncImage(url: userService.userData?.avatarURL) { phase in
+                            AsyncImage(url: userService.userData?.profileImageUrl) { phase in
                                 if let image = phase.image {
                                     image
                                         .resizable()

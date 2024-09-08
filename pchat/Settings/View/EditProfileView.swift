@@ -22,7 +22,7 @@ struct EditProfileView: View {
             Form {
                 Section {
                     HStack {
-                        AsyncImage(url: userService.userData?.avatarURL) { phase in
+                        AsyncImage(url: userService.userData?.profileImageUrl) { phase in
                             if let image = phase.image {
                                 image
                                     .resizable()

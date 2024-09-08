@@ -60,7 +60,7 @@ class UserService: ObservableObject {
     func uploadNewUserData(uid: String?, email: String) throws {
         guard let userId = uid else { return }
         
-        let user = User(id: uid, username: email.components(separatedBy: "@").first ?? email, email: email)
+        let user = User(id: uid, username: "New User", email: email, profileImageUrl: nil, status: nil, lastActive: Date())
         
         try db.collection(K.Firebase.users).document(userId).setData(from: user)
     }

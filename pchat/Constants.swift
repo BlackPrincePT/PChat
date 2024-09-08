@@ -7,24 +7,26 @@
 
 struct K {
     struct Firebase {
-        static let users: String = "users"
-        static let contacts: String = "contacts"
-        
         static let id: String = "id"
-        static let uid: String = "uid"
-        static let email: String = "email"
+        
+        static let users: String = "users"
         static let username: String = "username"
+        static let email: String = "email"
+        static let profileImageUrl: String = "profileImageUrl"
+        static let status: String = "status"
+        static let lastActive: String = "lastActive"
         
         static let chats: String = "chats"
+        static let isGroup: String = "isGroup"
+        static let title: String = "title"
+        static let participants: String = "participants"
+        static let lastMessage: String = "lastMessage"
+        static let lastMessageTimestamp: String = "lastMessageTimestamp"
+        
         static let messages: String = "messages"
-        
-        static let latestMessageContent: String = "latestMessageContent"
-        static let latestMessageTimestamp: String = "latestMessageTimestamp"
-        static let memberUsernames: String = "memberUsernames"
-        static let members: String = "members"
-        
+        static let senderId: String = "senderId"
         static let content: String = "content"
-        static let senderID: String = "senderID"
+        static let imageUrl: String = "imageUrl"
         static let timestamp: String = "timestamp"
     }
 }

@@ -41,7 +41,7 @@ class SettingsViewModel: ObservableObject {
                 }
             }
             print("Upload finished. Metadata: \(resultMetadata)")
-            UserService.shared.userData?.avatarURL = try await imageReference.downloadURL()
+            UserService.shared.userData?.profileImageUrl = try await imageReference.downloadURL()
             UserService.shared.updateUserData()
         }
         catch {
